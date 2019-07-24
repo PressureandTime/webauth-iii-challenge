@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
   if (token) {
     jwt.verify(token, secret.jwtSecret, (err, decodedToken) => {
       if (err) {
-        res.status(401).json({ you: "can't touch this" });
+        res.status(401).json({ you: 'not a valid token' });
       } else {
         req.decodedToken = decodedToken;
         console.log('decoded token', req.decodedToken);
@@ -16,6 +16,6 @@ module.exports = (req, res, next) => {
       }
     });
   } else {
-    res.status(401).json({ you: 'SHALL NOT PASS!' });
+    res.status(401).json({ you: 'you are not authorized!' });
   }
 };
